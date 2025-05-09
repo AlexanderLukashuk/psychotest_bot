@@ -1,0 +1,6 @@
+aiogram==3.5.0
+motor
+aiohttp
+python-dotenv
+google-genai==1.13.0
+pymongo
