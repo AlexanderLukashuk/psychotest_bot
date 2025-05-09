@@ -33,3 +33,17 @@ async def cmd_create_test(message: types.Message, state: FSMContext):
     await state.set_state(CreateTest.waiting_for_title)
 
 
+@router.message(CreateTest.waiting_for_title)
+async def process_test_title(message: types.Message, state: FSMContext):
+    await state.update_data(title=message.text)
+    await message.answer("Теперь введите описание/инструкцию теста.")
+    await state.set_state(CreateTest.waiting_for_description)
+
+
+@router.message(CreateTest.waiting_for_description)
+async def process_test_description(message: types.Message, state: FSMContext):
+    await state.update_data(description=message.text)
+    await message.answer("Отлично! Теперь введите первый вопрос теста.")
+    await state.set_state(CreateTest.waiting_for_question)
+
+
