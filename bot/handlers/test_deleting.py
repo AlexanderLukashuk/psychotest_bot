@@ -2,6 +2,7 @@ from aiogram import Router, types
 from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import StatesGroup, State
+from config import ALLOWED_CREATORS
 
 from database.mongo_client import tests_collection
 
@@ -14,6 +15,11 @@ class DeleteTest(StatesGroup):
 
 @router.message(Command("delete_test"))
 async def delete_test_command(message: types.Message, state: FSMContext):
+    if message.from_user.username not in ALLOWED_CREATORS:
+        await message.answer("Извините, у вас нет прав для создания тестов.")
+        return
+
+
     tests = list(tests_collection.find({}, {"title": 1, "_id": 0}))
     if not tests:
         await message.answer("В базе нет доступных тестов.")
