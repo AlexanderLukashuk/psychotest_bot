@@ -41,6 +41,9 @@ async def choose_test(message: types.Message, state: FSMContext):
         user_answers=[]
     )
 
+    description = test.get("description", "Описание отсутсвует.")
+    await message.answer(f"📄 Описание теста:\n\n{description}", reply_markup=ReplyKeyboardRemove())
+
     await ask_next_question(message, state)
 
 
