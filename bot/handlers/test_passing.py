@@ -43,7 +43,7 @@ async def choose_test(message: types.Message, state: FSMContext):
 
     description = test.get("description", "Описание отсутсвует.")
     await message.answer(f"📄 Описание теста:\n\n{description}", reply_markup=ReplyKeyboardRemove())
-
+    
     await ask_next_question(message, state)
 
 
@@ -104,6 +104,7 @@ async def finish_test(message: types.Message, state: FSMContext):
     gemini_result = await send_to_gemini_async(test, user_answers)
     print(gemini_result)
 
-    await message.answer(f"🧠 Результат от Gemini:\n\n{gemini_result}", reply_markup=ReplyKeyboardRemove())
+    # await message.answer(f"🧠 Результат от Gemini:\n\n{gemini_result}", reply_markup=ReplyKeyboardRemove())
+    await message.answer(f"🧠 Результат:\n\n{gemini_result}", reply_markup=ReplyKeyboardRemove())
 
     await state.clear()
