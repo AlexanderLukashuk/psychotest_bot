@@ -25,7 +25,7 @@ async def telegram_webhook(req: Request):
 @app.on_event("startup")
 async def on_startup():
     # Устанавливаем webhook на Vercel URL
-    webhook_url = "https://<твой-vercel-project>.vercel.app/webhook"
+    webhook_url = "https://psychotest-bot.vercel.app/webhook"
     await bot.set_webhook(webhook_url)
 
 @app.on_event("shutdown")
