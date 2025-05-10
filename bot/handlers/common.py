@@ -9,4 +9,4 @@ async def start_command(message: Message):
     if message.from_user.username in ALLOWED_CREATORS:
         await message.answer("Привет, создатель тестов! Готов начать создавать?")
     else:
-        await message.answer("Привет! Ты можешь пройти психологические тесты. Напиши /tests чтобы посмотреть доступные.")
+        await message.answer("Привет! Ты можешь пройти психологические тесты. Напиши /start_test чтобы посмотреть доступные.")
